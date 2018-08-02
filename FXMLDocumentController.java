@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.lang.String;
 
 /**
  * FXML Controller class
@@ -50,13 +51,20 @@ public class FXMLDocumentController implements Initializable {
     @Override
    
     public void initialize(URL url, ResourceBundle rb) {
-        
+                
         TableColumn AddToCart = new TableColumn("Action");
+        AddToCart.setPrefWidth(100);
         AddToCart.setResizable(false);
+        
         TableColumn AddToCart2 = new TableColumn("Action");
+        AddToCart2.setPrefWidth(100);
          AddToCart2.setResizable(false);
         TableColumn AddToCart3= new TableColumn("Action");
+        AddToCart3.setPrefWidth(100);
          AddToCart3.setResizable(false);
+         AddToCart3.impl_setReorderable(false);
+           AddToCart2.impl_setReorderable(false);
+             AddToCart3.impl_setReorderable(false);
         
         DessertTable.getColumns().addAll (AddToCart);
         EntreeTable.getColumns().addAll (AddToCart2);
@@ -94,13 +102,11 @@ public class FXMLDocumentController implements Initializable {
         AddToCart2.setCellValueFactory(new PropertyValueFactory<>("button"));
         AddToCart3.setCellValueFactory(new PropertyValueFactory<>("button"));
         
-        
-        
+     
         EntreeTable.setItems(oblist);
         MainTable.setItems(oblist1);
         DessertTable.setItems(oblist2);
     }    
-    
     
     
     

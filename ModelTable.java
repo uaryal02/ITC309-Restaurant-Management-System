@@ -1,5 +1,7 @@
 package restaurantsoftware;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableRow;
 /**
  *
  * @author Josar
@@ -7,12 +9,22 @@ import javafx.scene.control.Button;
 public class ModelTable {
     
 String item,price;
-private Button button;
+public Button button;
+final TableCell cell = new TableCell();
+
 public ModelTable (String item, String price){
     this.item = item;
     this.price = price;
-   this.button = new Button("AddToCart");
+   this.button = new Button("Add To Plate");
+   
+   
+button.setOnAction(evt -> {
+    TableRow row = cell.getTableRow();
+    System.out.println(row.getItem());
+});
+   
 }
+
 public String getItem(){
     return item;
 }
@@ -35,6 +47,7 @@ public Button getButton(){
 public void setButton(Button button){
     this.button = button;
 }
+
 
 }
 
