@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="605.0" prefWidth="790.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
+   <children>
+      <Text layoutX="254.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEMS IN CART" textAlignment="CENTER" wrappingWidth="294.8034210205078">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+      <TableView fx:id="cartTable" layoutX="54.0" layoutY="95.0" prefHeight="360.0" prefWidth="697.0">
+        <columns>
+          <TableColumn fx:id="itemColumn" prefWidth="478.6667060852051" text="Item" />
+          <TableColumn fx:id="priceColumn" prefWidth="100.6666259765625" text="Price" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

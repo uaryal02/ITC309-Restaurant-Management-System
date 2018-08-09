@@ -1,16 +1,32 @@
 package restaurantsoftware;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableRow;
+import javafx.stage.Stage;
+import static restaurantsoftware.DBConnector.stmt;
 /**
  *
  * @author Josar
  */
 public class ModelTable {
-    
+  
 String item,price;
 public Button button;
-final TableCell cell = new TableCell();
+//final TableCell cell = new TableCell();
+DBConnector db = new DBConnector();
+int count = 0;
+String number = new String();
+
 
 public ModelTable (String item, String price){
     this.item = item;
@@ -19,11 +35,37 @@ public ModelTable (String item, String price){
    
    
 button.setOnAction(evt -> {
-    TableRow row = cell.getTableRow();
-    System.out.println(row.getItem());
+        try {
+            
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/softwaredatabase","root","1995");
+            stmt=connection.createStatement();
+            stmt.execute("CREATE TABLE IF NOT EXISTS cart ( ITEM VARCHAR(45),PRICE VARCHAR(45));");
+            stmt.close();
+            stmt=connection.createStatement();
+            stmt.execute ("INSERT INTO cart(ITEM,PRICE) VALUES ('"+ModelTable.this.getItem()+"','"+ModelTable.this.getPrice()+"')");
+            stmt.close();
+            stmt=connection.createStatement();
+            ResultSet rs = db.stmt.executeQuery("SELECT * FROM cart");
+            while (rs.next()){
+                count++;
+                
+            }
+            number = Integer.toString(count);
+            //textField.setText("10");
+            stmt.close();
+           
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(ModelTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 });
    
 }
+
+    ModelTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 public String getItem(){
     return item;
@@ -47,7 +89,16 @@ public Button getButton(){
 public void setButton(Button button){
     this.button = button;
 }
-
+//
+//public String getString(){
+//    return number;
+//}
+//public void setString(String number){
+//    this.number = number;
+//}
+public String getNumber(){
+    return number;
+}
 
 }
 

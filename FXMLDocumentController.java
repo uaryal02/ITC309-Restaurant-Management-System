@@ -1,5 +1,6 @@
 package restaurantsoftware;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,6 +16,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.lang.String;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -41,16 +50,40 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<ModelTable, String> DItem;
     @FXML
     private TableColumn<ModelTable, String> DPrice;
+    @FXML
+    public TextField textField;
+    @FXML
+    Button viewCart;
+    //ModelTable mt = new ModelTable()
 
     
     ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
     ObservableList<ModelTable> oblist1 = FXCollections.observableArrayList();
     ObservableList<ModelTable> oblist2 = FXCollections.observableArrayList();
     
-    
+      
+    @FXML
+    private void viewCartButton(ActionEvent event){
+       Parent root1;
+        try {
+            root1 = FXMLLoader.load(getClass().getResource("ViewCart.fxml"));
+            Stage stage1 = new Stage();
+            stage1.setTitle("My New Stage Title");
+            stage1.setScene(new Scene(root1, 800, 550));
+            stage1.show();
+            // Hide this current window (if this is what you want)
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
    
     public void initialize(URL url, ResourceBundle rb) {
+        
+        viewCart.setOnAction(this::viewCartButton);
                 
         TableColumn AddToCart = new TableColumn("Action");
         AddToCart.setPrefWidth(100);
@@ -106,8 +139,10 @@ public class FXMLDocumentController implements Initializable {
         EntreeTable.setItems(oblist);
         MainTable.setItems(oblist1);
         DessertTable.setItems(oblist2);
+        //textField.setText(ModelTable.class.getNumber());
+
     }    
     
-    
+            
     
 }
