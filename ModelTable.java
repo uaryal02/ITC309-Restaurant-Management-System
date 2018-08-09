@@ -36,7 +36,7 @@ public ModelTable (String item, String price){
    
 button.setOnAction(evt -> {
         try {
-            
+               
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/softwaredatabase","root","1995");
             stmt=connection.createStatement();
             stmt.execute("CREATE TABLE IF NOT EXISTS cart ( ITEM VARCHAR(45),PRICE VARCHAR(45));");
