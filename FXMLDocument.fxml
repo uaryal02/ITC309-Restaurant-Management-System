@@ -20,8 +20,8 @@
          <children>
             <TableView fx:id="EntreeTable" layoutY="30.0" prefHeight="298.0" prefWidth="422.0">
               <columns>
-                <TableColumn fx:id="EItem" prefWidth="265.33330249786377" text="Item " />
-                <TableColumn fx:id="EPrice" prefWidth="84.0" text="Price" />
+                <TableColumn fx:id="EItem" editable="false" maxWidth="273.33333349227905" minWidth="273.33333349227905" prefWidth="273.33333349227905" resizable="false" sortable="false" text="Item " />
+                <TableColumn fx:id="EPrice" editable="false" maxWidth="58.0" minWidth="58.0" prefWidth="58.0" resizable="false" sortable="false" text="Price" />
               </columns>
             </TableView>
             <Text layoutX="164.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entree" textAlignment="CENTER" wrappingWidth="92.13671493530273">
@@ -35,8 +35,8 @@
          <children>
             <TableView fx:id="MainTable" layoutY="30.0" prefHeight="298.0" prefWidth="422.0">
                <columns>
-                  <TableColumn fx:id="MItem" prefWidth="265.33330249786377" text="Item " />
-                  <TableColumn fx:id="MPrice" prefWidth="84.0" text="Price" />
+                  <TableColumn fx:id="MItem" editable="false" maxWidth="273.33333349227905" minWidth="273.33333349227905" prefWidth="273.33333349227905" sortable="false" text="Item " />
+                  <TableColumn fx:id="MPrice" editable="false" maxWidth="58.0" minWidth="58.0" prefWidth="58.0" resizable="false" sortable="false" text="Price" />
                </columns>
             </TableView>
             <Text layoutX="164.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main" textAlignment="CENTER" wrappingWidth="92.13671493530273">
@@ -52,13 +52,13 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField alignment="CENTER" editable="false" layoutX="158.0" layoutY="104.0" prefHeight="25.0" prefWidth="44.0" />
+      <TextField fx:id="textField" alignment="CENTER" editable="false" layoutX="158.0" layoutY="104.0" prefHeight="25.0" prefWidth="44.0" />
       <AnchorPane layoutX="213.0" layoutY="508.0" prefHeight="328.0" prefWidth="440.0">
          <children>
             <TableView fx:id="DessertTable" layoutY="30.0" prefHeight="298.0" prefWidth="422.0">
                <columns>
-                  <TableColumn fx:id="DItem" prefWidth="265.33330249786377" text="Item " />
-                  <TableColumn fx:id="DPrice" prefWidth="84.0" text="Price" />
+                  <TableColumn fx:id="DItem" editable="false" maxWidth="273.33333349227905" minWidth="273.33333349227905" prefWidth="273.33333349227905" resizable="false" sortable="false" text="Item " />
+                  <TableColumn fx:id="DPrice" editable="false" maxWidth="58.0" minWidth="58.0" prefWidth="58.0" resizable="false" sortable="false" text="Price" />
                </columns>
             </TableView>
             <Text layoutX="164.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dessert" textAlignment="CENTER" wrappingWidth="92.13671493530273">
