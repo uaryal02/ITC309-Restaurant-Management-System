@@ -44,11 +44,10 @@ public class ViewCartController implements Initializable {
     private TableColumn <ModelTable,String> priceColumn;
     @FXML
     Button backButton;
-    ObservableList<ModelTable> oblist3 = FXCollections.observableArrayList();
+    final ObservableList<ModelTable> oblist3 = FXCollections.observableArrayList();
     
     @FXML
     private void backtoMain(ActionEvent event){
-        System.out.println("Sarthak");
         Parent root1;
         try {
             root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -65,8 +64,26 @@ public class ViewCartController implements Initializable {
         }
         
     }
+    public void refreshTable(){
+        oblist3.clear();
+        try{
+        Connection con = DBConnector.getConnection();
+            ResultSet rs = con.createStatement().executeQuery("select * from cart");
+            while (rs.next()){
+                oblist3.add(new ModelTable(rs.getString("Item"),rs.getString("Price")));
+            }
+    }   catch (SQLException ex) {
+            Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cartTable.setItems(oblist3);
+    }
     public void initialize(URL url, ResourceBundle rb) {
+         TableColumn Delete = new TableColumn("Action");
+        Delete.setPrefWidth(100);
+        Delete.setResizable(false);
         
+        
+         cartTable.getColumns().addAll (Delete);
         try{
         Connection con = DBConnector.getConnection();
             ResultSet rs = con.createStatement().executeQuery("select * from cart");
@@ -78,7 +95,7 @@ public class ViewCartController implements Initializable {
         }
         itemColumn.setCellValueFactory(new PropertyValueFactory<>("item"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        
+        Delete.setCellValueFactory(new PropertyValueFactory<>("button1"));
         cartTable.setItems(oblist3);
 }
 }

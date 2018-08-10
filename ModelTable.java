@@ -1,42 +1,44 @@
 package restaurantsoftware;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.control.TableView;
 import static restaurantsoftware.DBConnector.stmt;
 /**
  *
  * @author Josar
  */
 public class ModelTable {
-  
-String item,price;
+
+StringProperty item,price;
 public Button button;
 //final TableCell cell = new TableCell();
 DBConnector db = new DBConnector();
 int count = 0;
 String number = new String();
+private Button button1;
 
-
+private TableView<ModelTable> cartTable = new TableView<ModelTable>();
+ObservableList<ModelTable> oblist3 = FXCollections.observableArrayList();
 public ModelTable (String item, String price){
-    this.item = item;
-    this.price = price;
+    this.item = new SimpleStringProperty (item);
+    this.price = new SimpleStringProperty(price);
    this.button = new Button("Add To Plate");
-   
-   
+   this.button1 = new Button("Remove");
+
+
 button.setOnAction(evt -> {
         try {
-               
+
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/softwaredatabase","root","1995");
             stmt=connection.createStatement();
             stmt.execute("CREATE TABLE IF NOT EXISTS cart ( ITEM VARCHAR(45),PRICE VARCHAR(45));");
@@ -48,46 +50,69 @@ button.setOnAction(evt -> {
             ResultSet rs = db.stmt.executeQuery("SELECT * FROM cart");
             while (rs.next()){
                 count++;
-                
+
             }
             number = Integer.toString(count);
             //textField.setText("10");
             stmt.close();
-           
-                  
+
+
         } catch (SQLException ex) {
             Logger.getLogger(ModelTable.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 });
-   
+button1.setOnAction((ActionEvent evt) -> {
+    try{
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/softwaredatabase","root","1995");
+        stmt = connection.createStatement();
+        // String item1 = ModelTable.this.getItem();
+        stmt.execute("DELETE FROM cart WHERE Item = ('"+ModelTable.this.getItem()+"')");
+        ViewCartController v = new ViewCartController();
+        ViewCartController vc = new ViewCartController();
+        vc.refreshTable();
+        
+        stmt.close();
+//        cartTable.getColumns().get(0).setVisible(false);
+// cartTable.getColumns().get(0).setVisible(true);
+    }   catch (SQLException ex) {
+        Logger.getLogger(ModelTable.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    });
+
 }
 
-    ModelTable() {
+    private ModelTable() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 public String getItem(){
-    return item;
+    return item.get();
 }
 public String getPrice(){
-    return price;
+    return price.get();
 }
 
 
 public void setItem(String item){
-    this.item = item;
+    this.item.set(item);
 }
 public void setPrice(String price){
-    this.price = price;
+    this.price.set(price);
 }
 
 public Button getButton(){
     return button;
 }
+public Button getButton1(){
+    return button1;
+}
 
 public void setButton(Button button){
     this.button = button;
+}
+public void setButton1(Button button1){
+    this.button = button1;
 }
 //
 //public String getString(){
@@ -99,6 +124,11 @@ public void setButton(Button button){
 public String getNumber(){
     return number;
 }
-
+public StringProperty itemProperty(){
+    return item;
+}
+public StringProperty priceProperty(){
+    return price;
+}
 }
 

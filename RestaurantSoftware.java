@@ -5,10 +5,12 @@
  */
 package restaurantsoftware;
 
+import com.sun.prism.impl.Disposer.Record;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +27,7 @@ public class RestaurantSoftware extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
         
 
     }
