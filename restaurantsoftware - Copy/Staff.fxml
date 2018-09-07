@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<SplitPane dividerPositions="0.44648829431438125" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurantsoftware.StaffController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Label prefHeight="398.0" prefWidth="264.0" text="Restaurant Management System" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Button fx:id="ChangePassword" layoutX="58.0" layoutY="57.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="46.0" prefWidth="159.0" text="ChangePassword" />
+            <Button fx:id="EditMenu" layoutX="65.0" layoutY="125.0" mnemonicParsing="false" onAction="#editMenu" prefHeight="46.0" prefWidth="159.0" text="Edit Menu" />
+            <Button fx:id="DeleteOrder" layoutX="65.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="54.0" prefWidth="159.0" text="Delete Order" />
+            <Button fx:id="Logout" layoutX="61.0" layoutY="325.0" mnemonicParsing="false" onAction="#logout" prefHeight="46.0" prefWidth="168.0" text="Logout" />
+            <Button fx:id="ViewHomePage" layoutX="65.0" layoutY="261.0" mnemonicParsing="false" onAction="#viewHomePage" prefHeight="46.0" prefWidth="159.0" text="ViewHomePage" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
